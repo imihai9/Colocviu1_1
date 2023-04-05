@@ -9,10 +9,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Colocviu1_1MainActivity extends AppCompatActivity {
 
-    private Button eastButton, westButton, northButton, southButton;
+    private Button eastButton, westButton, northButton, southButton, navigateToSecondaryActivityButton;
     private TextView buttonsTextView;
 
     private int numberOfClicks;
@@ -44,6 +45,12 @@ public class Colocviu1_1MainActivity extends AppCompatActivity {
                 case R.id.west_button:
                     concatTextToTextView(String.valueOf(westButton.getText()));
                     break;
+                case R.id.navigate_button:
+                    Intent intent = new Intent(getApplicationContext(), Colocviu1_1SecondaryActivity.class);
+                    intent.putExtra(Constants.NUMBER_OF_CLICKS, 0);
+                    intent.putExtra(Constants.BUTTONS_PRESSED, buttonsTextView.getText());
+
+                    startActivityForResult(intent, Constants.SECONDARY_ACTIVITY_REQUEST_CODE);
             }
         }
     }
@@ -58,6 +65,8 @@ public class Colocviu1_1MainActivity extends AppCompatActivity {
         westButton = (Button)findViewById(R.id.west_button);
         northButton = (Button)findViewById(R.id.north_button);
         southButton = (Button)findViewById(R.id.south_button);
+        navigateToSecondaryActivityButton = (Button)findViewById(R.id.navigate_button);
+        navigateToSecondaryActivityButton.setOnClickListener(buttonClickListener);
 
         eastButton.setOnClickListener(buttonClickListener);
         westButton.setOnClickListener(buttonClickListener);
@@ -67,10 +76,6 @@ public class Colocviu1_1MainActivity extends AppCompatActivity {
         buttonsTextView = (TextView)findViewById(R.id.buttonsTextView);
         System.out.println(buttonsTextView);
 
-//        Intent intent = getIntent();
-//        if (intent != null && intent.getExtras().containsKey(Constants.NUMBER_OF_CLICKS)) {
-//            numberOfClicks = intent.getIntExtra(Constants.NUMBER_OF_CLICKS, -1);
-//        }
     }
 
     @Override
@@ -87,4 +92,13 @@ public class Colocviu1_1MainActivity extends AppCompatActivity {
             numberOfClicks = 0;
         }
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if (requestCode == Constants.SECONDARY_ACTIVITY_REQUEST_CODE) {
+            Toast.makeText(this, "The activity returned with result " + resultCode, Toast.LENGTH_LONG).show();
+        }
+    }
+
 }
