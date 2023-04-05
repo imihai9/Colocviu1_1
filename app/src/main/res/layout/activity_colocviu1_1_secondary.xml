@@ -10,8 +10,28 @@
         android:id="@+id/textView"
         android:layout_width="263dp"
         android:layout_height="78dp"
-        tools:layout_editor_absoluteX="70dp"
-        tools:layout_editor_absoluteY="59dp" />
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="49dp" />
+
+    <Button
+        android:id="@+id/register_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="@string/register"
+        tools:layout_editor_absoluteX="27dp"
+        tools:layout_editor_absoluteY="246dp" />
+
+    <Button
+        android:id="@+id/cancel_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="@string/cancel"
+        tools:layout_editor_absoluteX="224dp"
+        tools:layout_editor_absoluteY="261dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
